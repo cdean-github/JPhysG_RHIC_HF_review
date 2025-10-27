@@ -5,6 +5,8 @@ string black_color = "#000000";
 string red_color = "#fe0100";
 string blue_color = "#0800ff";
 string green_color = "#0a9900";
+string yellow_color = "#F7D619";
+string purple_color = "#DA19F7";
 
 struct data_point
 {
