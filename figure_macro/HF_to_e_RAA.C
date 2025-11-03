@@ -21,14 +21,14 @@ void HF_to_e_RAA(bool save_plot = true)
   star_c_to_e_data.push_back({4.0, 3.5, 4.5, 0.29, 0.04, 0.02, 0.03});
   star_c_to_e_data.push_back({5.0, 4.5, 5.5, 0.31, 0.06, 0.06, 0.07});
   star_c_to_e_data.push_back({7.0, 5.5, 8.5, 0.27, 0.07, 0.09, 0.08});
-  plot_infos.push_back(plot_info("STAR #it{c}#rightarrow #it{e}", yellow_color, 8, star_c_to_e_data));
+  plot_infos.push_back(plot_info("STAR #it{c}#rightarrow#kern[-0.4]{#it{e}}", yellow_color, 8, star_c_to_e_data));
   //b -> e
   vector<data_point> star_b_to_e_data;
   star_b_to_e_data.push_back({3.0, 2.5, 3.5, 1.01, 0.19, 0.12, 0.11});
   star_b_to_e_data.push_back({4.0, 3.5, 4.5, 0.54, 0.09, 0.05, 0.08});
   star_b_to_e_data.push_back({5.0, 4.5, 5.5, 0.59, 0.12, 0.10, 0.13});
   star_b_to_e_data.push_back({7.0, 5.5, 8.5, 0.47, 0.07, 0.09, 0.07});
-  plot_infos.push_back(plot_info("STAR #it{b}#rightarrow #it{e}", red_color, 21, star_b_to_e_data));
+  plot_infos.push_back(plot_info("STAR #it{b}#rightarrow#kern[-0.4]{#it{e}}", red_color, 21, star_b_to_e_data));
 
   //PHENIX points
   TFile *fRaa = new TFile("rootInputs/PHENIXcbe.root");
@@ -68,8 +68,8 @@ void HF_to_e_RAA(bool save_plot = true)
     legend->AddEntry(myGraph, plot_infos[i].legend_info.c_str(), "P");
   }
 
-  legend->AddEntry(gRaa_ce, "PHENIX #it{c}#rightarrow #it{e}", "L");
-  legend->AddEntry(gRaa_be, "PHENIX #it{b}#rightarrow #it{e}", "L");
+  legend->AddEntry(gRaa_ce, "PHENIX #it{c}#rightarrow#kern[-0.4]{#it{e}}", "L");
+  legend->AddEntry(gRaa_be, "PHENIX #it{b}#rightarrow#kern[-0.4]{#it{e}}", "L");
 
   multigraph->SetTitle(axisTitles.c_str());
   multigraph->GetYaxis()->SetRangeUser(0, 2.2);
@@ -77,14 +77,8 @@ void HF_to_e_RAA(bool save_plot = true)
 
   gRaa_ce->Draw("L3");
   gRaa_be->Draw("L3");
-
-  //Add line at y = 1
-  TF1 *line = new TF1("line", "pol1", 0, 10);
-  line->SetParameters(1, 0);
-  line->SetLineColor(1);
-  line->SetLineStyle(2);
-  line->SetLineWidth(2);
-  line->Draw("SAME");
+  
+  makeLine(1, 9);
 
   legend->Draw();
 

@@ -3,9 +3,12 @@ float text_size = 0.04;
 float alpha = 0.2;
 string black_color = "#000000";
 string red_color = "#fe0100";
-string blue_color = "#0800ff";
-string green_color = "#0a9900";
+string orange_color = "#FF9E00";
 string yellow_color = "#F7D619";
+string green_color = "#0a9900";
+string blue_color = "#0800ff";
+string cyan_color = "#00FBFF";
+string indigo_color = "#7402D1";
 string purple_color = "#DA19F7";
 
 struct data_point
@@ -74,4 +77,15 @@ TGraphMultiErrors* makeGraph(plot_info this_info)
   graph->GetAttFill(1)->SetFillColorAlpha(ci, alpha);
 
   return graph;
+}
+
+void makeLine(float min, float max)
+{
+  //Add line at y = 1
+  TF1 *line = new TF1("line", "pol1", min, max);
+  line->SetParameters(1, 0);
+  line->SetLineColor(1);
+  line->SetLineStyle(2);
+  line->SetLineWidth(2);
+  line->Draw("SAME");
 }
